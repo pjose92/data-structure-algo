@@ -70,3 +70,19 @@ const arr = [8, 20, -2, 4, -6];
 bubbleSort(arr);
 console.log(arr); //[-6, -2, 4, 8, 20]
 //Big-O = O(n^2)
+
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let numberToInstert = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > numberToInstert) {
+      j = j - 1;
+    }
+    arr[j + 1] = numberToInstert;
+  }
+}
+
+const arr = [8, 20, 4, -6];
+insertionSort(arr);
+console.log(arr); // [-6, 4, 8, 20]
+// Big O = O(n^2)
