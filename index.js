@@ -76,6 +76,7 @@ function insertionSort(arr) {
     let numberToInstert = arr[i];
     let j = i - 1;
     while (j >= 0 && arr[j] > numberToInstert) {
+      arr[j + 1] = arr[j];
       j = j - 1;
     }
     arr[j + 1] = numberToInstert;
