@@ -87,3 +87,59 @@ const arr = [8, 20, 4, -6];
 insertionSort(arr);
 console.log(arr); // [-6, 4, 8, 20]
 // Big O = O(n^2)
+
+function quickSort(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+  //select last element of arr
+  let pivot = arr[arr.length - 1];
+  let left = [];
+  let right = [];
+  //traverse the array
+  for (let i = 0; i < arr.length - 1; i++) {
+    //compare with pivot and push to appropriate array
+    //array of i is less than the pivot element push to left array
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+const arr = [8, 20, 4, -6];
+console.log(quickSort(arr)); // [-6, 4, 8, 20]
+// Big O Complexity
+// Worst-case:
+// O(n^2) (when the pivot is always the smallest or largest element, leading to unbalanced partitions)
+// Average/Best-case:
+// O(nlogn) (when the pivot divides the array more evenly)
+
+function mergeSort(arr) {
+  if (arr.length < 2) {
+    return arr;
+  }
+  const mid = Math.floor(arr.length / 2);
+  const leftArr = arr.slice(0, mid);
+  const rightArr = arr.slice(mid);
+  return merge(mergeSort(leftArr), mergeSort(rightArr));
+}
+
+function merge(leftArr, rightArr) {
+  const sortedArr = [];
+  while (leftArr.length && rightArr.length) {
+    if (leftArr[0] <= rightArr[0]) {
+      sortedArr.push(leftArr.shift());
+    } else {
+      sortedArr.push(rightArr.shift());
+    }
+  }
+  return [...sortedArr, ...leftArr, ...rightArr];
+}
+
+const arr = [8, 20, 4, -6];
+console.log(mergeSort(arr)); // [-6, 4, 8, 20]
+
+//Big O = O(nlogn)
